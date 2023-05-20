@@ -34,7 +34,6 @@ dpa <- dpa %>%
 
 ```
 
-
 Base de datos del aprovechamiento forestal del 2022:
 
 ```{r}
@@ -48,6 +47,11 @@ tabla_aprovechamiento <- tabla_aprovechamiento %>%
   group_by(provincia, canton, parroquia) %>% 
   summarise(suma_area_predio = sum(area_del_predio_has, na.rm = T),
             suma_area_programa = sum(area_del_programa_has, na.rm = T))
+
+tabla_aprovechamiento <- tabla_aprovechamiento %>% 
+  mutate(join_var_can = str_c(provincia, canton , sep = "-"))
+
+tabla_aprovechamiento <- stringdist_left_join(x = dpa,y = tabla_aprovechamiento)
 ```
 
 Base de datos de la atencion a denuncias de talas del 2022:
@@ -89,12 +93,9 @@ read_excel('data/INSUMOS ESTADISTICOS/MAATE_BDD_unidades_moviles_2022.xlsx')
 
 Shape file:
 
-
-
 ```{r}
 
 ```
-
 
 Limpieza shape:
 
@@ -113,10 +114,6 @@ origen <- stringdist_left_join(x = dpa,y = origen)
 
 
 ```
-
-
-
-
 
 ```{r}
 shape %>% 
