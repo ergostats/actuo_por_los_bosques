@@ -15,16 +15,33 @@ library(stringdist)
 library(fuzzyjoin)
 ```
 
+Lectura del shapefile:
+
+```{r}
+dpa <- shape %>%
+  as_tibble() %>% 
+  select(matches("DPA"))
+
+
+dpa <- dpa %>% 
+  clean_names() %>% 
+  mutate(join_var_can = str_c(dpa_despro, dpa_descan, sep = "-"),
+         join_var_par = str_c(dpa_despro, dpa_descan, dpa_despar, sep = "-"))
+
+
+```
+
+
 Base de datos del aprovechamiento forestal del 2022:
 
 ```{r}
-tabla <- read_excel('data/INSUMOS ESTADISTICOS/MAATE_BDD_aprovechamiento_forestal_2022.xlsx')
+tabla_aprovechamiento <- read_excel('data/INSUMOS ESTADISTICOS/MAATE_BDD_aprovechamiento_forestal_2022.xlsx')
 
 
-tabla <- tabla %>% 
+tabla_aprovechamiento <- tabla_aprovechamiento %>% 
   clean_names()
 
-tabla %>% 
+tabla_aprovechamiento <- tabla_aprovechamiento %>% 
   group_by(provincia, canton, parroquia) %>% 
   summarise(suma_area_predio = sum(area_del_predio_has, na.rm = T),
             suma_area_programa = sum(area_del_programa_has, na.rm = T))
@@ -79,23 +96,17 @@ shape <- read_sf("data/ORGANIZACION_TERRITORIAL_PARROQUIAL/ORGANIZACION_TERRITOR
 Limpieza shape:
 
 ```{r}
-dpa <- shape %>%
-  as_tibble() %>% 
-  select(matches("DPA"))
 
 origen <- tabla_puestos %>% 
   group_by(origen, origen_provincia) %>% 
   summarise(frecuencia = n(),
             cubicado = sum(cubicado_vtotal, na.rm = T),
             retencion = sum(vol_ret,na.rm = T))
-dpa <- dpa %>% 
-  clean_names() %>% 
-  mutate(join_var = str_c(dpa_despro, dpa_descan, sep = "-"))
 
 origen <- origen %>% 
-  mutate(join_var = str_c( origen_provincia,origen, sep = "-"))
+  mutate(join_var_can = str_c( origen_provincia,origen, sep = "-"))
 
-stringdist_left_join(x = dpa,y = origen)
+origen <- stringdist_left_join(x = dpa,y = origen)
 
 
 ```
