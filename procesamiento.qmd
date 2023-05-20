@@ -4,19 +4,45 @@ format: html
 editor: visual
 ---
 
-## Lectura de las bases
+# Software y librerias
+
+```{r, message=FALSE,warning=FALSE}
+
+# Lectura de excel:
+library(readxl)
+
+# Manejo de las bases:
+library(tidyverse)
+
+# Mapas:
+library(sf)
+
+# Limpiar bases de datos:
+library(janitor)
+
+# Match por similaridad:
+library(stringdist)
+
+# Unión por similaridad:
+library(fuzzyjoin)
+
+# Adicionales para mapas:
+library(ggsn)
+
+```
+El reto se realizo con R:
 
 ```{r}
-library(readxl)
-library(tidyverse)
-library(sf)
-library(janitor)
-library(stringdist)
-library(fuzzyjoin)
-library(ggsn)
+
+R.version
+
 ```
 
-Catalogo variables:
+
+
+# Lectura de las bases
+
+#### Catalogo variables:
 
 ```{r}
 diccionario <- read_excel("data/INSUMOS ESTADISTICOS/CATALOGO_CONTROL_FORESTAL.xlsx",
@@ -26,22 +52,73 @@ diccionario <- diccionario %>%
   clean_names()
 ```
 
-Lectura del shapefile:
+#### Lectura de los shapefile:
+
+##### Cantones
 
 ```{r}
+shape_can <- read_sf("data/ORGANIZACIÓN TERRITORIAL CANTONAL/ORGANIZACIaN TERRITORIAL CANTONAL.shp")
 
-shape <- read_sf("data/ORGANIZACION_TERRITORIAL_PARROQUIAL/ORGANIZACION_TERRITORIAL_PARROQUIAL.shp")
+shape_can <- shape_can %>% 
+  filter(DPA_DESPRO != "GALÁPAGOS")
+```
 
-aread_protegidas <- read_sf("data/hc000_bosque_vegetacion_protectora/hc000_bosque_vegetacion_protectora.shp")
+##### Parroquias
 
+```{r}
+shape_par <- read_sf("data/ORGANIZACION_TERRITORIAL_PARROQUIAL/ORGANIZACION_TERRITORIAL_PARROQUIAL.shp")
 
-dpa <- shape %>%
+shape_par <- shape_par %>% 
+  filter(DPA_DESPRO != "GALÁPAGOS")
+```
+
+##### Bosques protectores y areas conservadas
+
+```{r}
+bosques_protectores <- read_sf("data/hc000_bosque_vegetacion_protectora/hc000_bosque_vegetacion_protectora.shp")
+
+areas_conservacion <- read_sf("data/v_hc005_area_bajo_conservacion_aPolygon/")
+```
+
+#### Lectura de los archivos:
+
+##### Aprovechamiento forestal
+
+```{r}
+tabla_aprovechamiento <- read_excel('data/INSUMOS ESTADISTICOS/MAATE_BDD_aprovechamiento_forestal_2022.xlsx')
+```
+
+##### Denuncias:
+
+```{r}
+tabla_denuncias<-read_excel('data/INSUMOS ESTADISTICOS/MAATE_BDD_atencion_denuncias_talas_2022.xlsx')
+```
+
+##### Puestos fijos:
+
+```{r}
+tabla_puestos <- read_excel('data/INSUMOS ESTADISTICOS/MAATE_BDD_puestos_fijos_2022.xlsx')
+
+```
+
+# Limpieza de los archivos:
+
+```{r}
+dpa_can <- shape_can %>%
   as_tibble() %>% 
   select(matches("DPA"))
 
 
-dpa <- dpa %>% 
-  clean_names() %>% 
+dpa_can <- dpa_can %>%
+  clean_names() %>%
+  mutate(join_var_can = str_c(dpa_despro, dpa_descan, sep = "-"))
+
+dpa_par <- shape_par %>%
+  as_tibble() %>% 
+  select(matches("DPA"))
+
+dpa_par <- dpa_par %>%
+  clean_names() %>%
   mutate(join_var_can = str_c(dpa_despro, dpa_descan, sep = "-"),
          join_var_par = str_c(dpa_despro, dpa_descan, dpa_despar, sep = "-"))
 
@@ -51,7 +128,7 @@ dpa <- dpa %>%
 Base de datos del aprovechamiento forestal del 2022:
 
 ```{r}
-tabla_aprovechamiento <- read_excel('data/INSUMOS ESTADISTICOS/MAATE_BDD_aprovechamiento_forestal_2022.xlsx')
+
 
 
 tabla_aprovechamiento <- tabla_aprovechamiento %>% 
@@ -72,8 +149,6 @@ tabla_aprovechamiento <- stringdist_left_join(x = dpa,y = tabla_aprovechamiento)
 Base de datos de la atencion a denuncia de talas del 2022:
 
 ```{r}
-tabla_denuncias<-read_excel('data/INSUMOS ESTADISTICOS/MAATE_BDD_atencion_denuncias_talas_2022.xlsx')
-
 
 tabla_denuncias<-tabla_denuncias %>%
   clean_names()
@@ -91,33 +166,18 @@ tabla_denuncias <-  stringdist_left_join(x=dpa,
 
 ```
 
-Base de datos del destino final de los recursos para el 2022:
-
-```{r}
-read_excel('data/INSUMOS ESTADISTICOS/MAATE_BDD_destino_final_2022.xlsx')
-```
-
 Base de datos de los puestos fijos de control para el 2022:
 
 ```{r}
-tabla_puestos <- read_excel('data/INSUMOS ESTADISTICOS/MAATE_BDD_puestos_fijos_2022.xlsx')
+
 
 tabla_puestos <- tabla_puestos %>% 
   clean_names() 
 ```
 
-Base de datos de las unidades moviles de control para el 2022:
 
-```{r}
-read_excel('data/INSUMOS ESTADISTICOS/MAATE_BDD_unidades_moviles_2022.xlsx')
-```
-
-<<<<<<< HEAD
-Limpieza shape:
-=======
 
 Origenes y destinos:
->>>>>>> 0e57e3260c23b86cf71e0c9d974fab28b85008f7
 
 ```{r}
 
@@ -142,7 +202,7 @@ origen <- tabla_puestos %>%
 origen <- origen %>% 
   mutate(join_var_can = str_c( origen_provincia,origen, sep = "-"))
 
-origen <- stringdist_left_join(x = dpa,y = origen)
+origen <- stringdist_left_join(x = dpa_can,y = origen)
 
 ```
 
@@ -152,21 +212,22 @@ Número de revisiones forestales por origen del recurso:
 
 ```{r}
 
-aread_protegidas <- st_transform(aread_protegidas, "+proj=merc")
 
-shape <- st_transform(shape, "+proj=merc")
-
-# shape <- sf::st_simplify(shape)
-
-tabla_plot <- shape %>% 
-  left_join(origen, by = c("DPA_PARROQ" = "dpa_parroq"))
+tabla_plot <- shape_can %>% 
+  left_join(origen, by = c("DPA_CANTON" = "dpa_canton"))
 # %>% 
 #   filter(DPA_DESPRO != "GALAPAGOS") 
 
 tabla_plot %>% 
   ggplot() +
-  geom_sf(aes(fill = frecuencia)) +
-  # geom_sf(data = aread_protegidas) +
+  geom_sf(data = tabla_plot,
+          aes(fill = frecuencia)) +
+  geom_sf(data = bosques_protectores,
+          fill = "green",
+          alpha = 0.2)  +
+  geom_sf(data = areas_conservacion,
+          fill = "yellow",
+          alpha = 0.2) +
   geom_point(data = diccionario, 
              aes(x = x,
                  y = y)) +
@@ -175,28 +236,28 @@ tabla_plot %>%
          caption = "Fuente: MAATE")
 ```
 
-<<<<<<< HEAD
 Grafico de Aprovechamiento Forestal:
 
 ```{r}
-tabla_plot_aprovechamiento <- shape %>% 
+tabla_plot_aprovechamiento <- shape_can %>% 
   left_join(tabla_aprovechamiento, by = c("DPA_PARROQ" = "dpa_parroq")) %>% 
   filter(DPA_DESPRO != "GALAPAGOS") 
 
 tabla_plot_aprovechamiento %>% 
   ggplot() +
   geom_sf(aes(fill = suma_area_programa)) +
-  geom_point(data = tabla_aprovechamiento, 
+  geom_point(data = diccionario, 
              aes(x = x,
                  y = y)) +
     labs(title = "Areas del programa de aprovechamiento forestal por cantón",
          subtitle = "Los puntos representan las areas de aprovechamiento forestal por canton",
          caption = "Fuente: MAATE")
-=======
+```
+
 Volúmen retenido y número de denuncias por provincia:
 
 ```{r}
-tabla_plot_denuncias <- shape %>%
+tabla_plot_denuncias <- shape_can %>%
   left_join(tabla_denuncias, by = c("DPA_CANTON" = "dpa_canton")) %>% 
   filter(DPA_DESPRO != "GALAPAGOS")
 tabla_plot_denuncias %>%
@@ -212,7 +273,7 @@ tabla_plot_denuncias %>%
 ```
 
 ```{r}
-tabla_plot_volumen <- shape %>%
+tabla_plot_volumen <- shape_can %>%
   left_join(tabla_denuncias, by = c("DPA_CANTON" = "dpa_canton")) %>% 
   filter(DPA_DESPRO != "GALAPAGOS")
 
@@ -225,5 +286,4 @@ tabla_plot_volumen %>%
   labs(title = "Volúmen retenido por cantón",
        subtitle = "Los puntos son el volúmen",
        caption = "Fuente: MAATE")
->>>>>>> 0e57e3260c23b86cf71e0c9d974fab28b85008f7
 ```
