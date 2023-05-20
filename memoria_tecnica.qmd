@@ -18,23 +18,12 @@ Para la selección de qué datos usar procedimos a tener una conversación en el
 
 Por último, se decidió usar el lenguaje de programación R para trabajar. Los scripts, datos y resultados se pueden observar en el siguiente repositorio de GitHub https://github.com/ergostats/actuo_por_los_bosques.git .
 
-## Quarto
+## Durante
 
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+En la etapa previa, se utilizó los recursos de datos en cuanto a la información geográfica para examinar diversos aspectos relacionados con los recursos forestales: puestos de control de recursos madereros y no madereros, las denuncias atendidas en cuanto al volumen de retención y sobre el origen y destino de estos recursos.
 
-## Running Code
+Al aplicar estos recursos se extrajo las capas de información de acuerdo con variables de interés debido a su pertinencia para los puntos de control que son relevantes. Respecto al aprovechamiento forestal, se analizó el área total de los predios y de los programas de protección por provincias, cantones y parroquias. En cuanto a la atención de denuncias, se realicé en cuanto a la cantidad y el total del volumen retenido en los distintos niveles geográficos mencionados anteriormente. Para el origen y destino de los recursos se tomó la frecuencia y las retenciones de estos recursos en sus entradas y salidas. Esta aplicación de los recursos permitió obtener una visión más completa de la situación de los bosques y los recursos madereros y no madereros, así como de las denuncias relacionadas.
 
-When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+Esto para aportar a los resultados deseados y poderlos representarlos de manera grafica a traves de capas geograficas. La información obtenida ayudo a comprender la distribución espacial de los recursos, identificar áreas críticas o en riesgo, optimizar la ubicación de los puestos de control y mejorar la gestión y protección de los bosques.
 
-```{r}
-1 + 1
-```
-
-You can add options to executable code like this
-
-```{r}
-#| echo: false
-2 * 2
-```
-
-The `echo: false` option disables the printing of code (only output is displayed).
+## 
