@@ -26,7 +26,6 @@ diccionario <- diccionario %>%
   clean_names()
 ```
 
-
 Lectura del shapefile:
 
 ```{r}
@@ -48,7 +47,6 @@ dpa <- dpa %>%
 
 
 ```
-
 
 Base de datos del aprovechamiento forestal del 2022:
 
@@ -144,7 +142,6 @@ origen <- stringdist_left_join(x = dpa,y = origen)
 
 ```
 
-
 ### Graficos:
 
 Número de revisiones forestales por origen del recurso:
@@ -172,4 +169,38 @@ tabla_plot %>%
     labs(title = "Número de verificaciones por cantón",
          subtitle = "Los puntos representan los puntos de control forestal",
          caption = "Fuente: MAATE")
+```
+
+Volúmen retenido y número de denuncias por provincia:
+
+```{r}
+tabla_plot_denuncias <- shape %>%
+  left_join(tabla_denuncias, by = c("DPA_CANTON" = "dpa_canton")) %>% 
+  filter(DPA_DESPRO != "GALAPAGOS")
+tabla_plot_denuncias %>%
+  ggplot()+
+  geom_sf(aes(fill =suma_vol_retenido )) + 
+  geom_point(data = diccionario,
+             aes(x = x,
+                 y = y)) +
+  labs(title = "Número de denuncias por cantón",
+       subtitle = "Los puntos son las denuncias realizadas",
+       caption = "Fuente: MAATE")
+
+```
+
+```{r}
+tabla_plot_volumen <- shape %>%
+  left_join(tabla_denuncias, by = c("DPA_CANTON" = "dpa_canton")) %>% 
+  filter(DPA_DESPRO != "GALAPAGOS")
+
+tabla_plot_volumen %>%
+  ggplot()+
+  geom_sf(aes(fill = denuncias)) + 
+  geom_point(data = diccionario,
+             aes(x = x,
+                 y = y)) +
+  labs(title = "Volúmen retenido por cantón",
+       subtitle = "Los puntos son el volúmen",
+       caption = "Fuente: MAATE")
 ```
