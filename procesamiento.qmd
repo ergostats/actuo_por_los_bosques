@@ -15,6 +15,17 @@ library(stringdist)
 library(fuzzyjoin)
 ```
 
+Catalogo variables:
+
+```{r}
+diccionario <- read_excel("data/INSUMOS ESTADISTICOS/CATALOGO_CONTROL_FORESTAL.xlsx",
+                          sheet = "PFCFVS")
+
+diccionario <- diccionario %>% 
+  clean_names()
+```
+
+
 Lectura del shapefile:
 
 ```{r}
@@ -34,6 +45,7 @@ dpa <- dpa %>%
 
 ```
 
+
 Base de datos del aprovechamiento forestal del 2022:
 
 ```{r}
@@ -47,14 +59,9 @@ tabla_aprovechamiento <- tabla_aprovechamiento %>%
   group_by(provincia, canton, parroquia) %>% 
   summarise(suma_area_predio = sum(area_del_predio_has, na.rm = T),
             suma_area_programa = sum(area_del_programa_has, na.rm = T))
-
-tabla_aprovechamiento <- tabla_aprovechamiento %>% 
-  mutate(join_var_can = str_c(provincia, canton , sep = "-"))
-
-tabla_aprovechamiento <- stringdist_left_join(x = dpa,y = tabla_aprovechamiento)
 ```
 
-Base de datos de la atencion a denuncias de talas del 2022:
+Base de datos de la atencion a denuncia de talas del 2022:
 
 ```{r}
 tabla_denuncias<-read_excel('data/INSUMOS ESTADISTICOS/MAATE_BDD_atencion_denuncias_talas_2022.xlsx')
@@ -63,16 +70,10 @@ tabla_denuncias<-read_excel('data/INSUMOS ESTADISTICOS/MAATE_BDD_atencion_denunc
 tabla_denuncias<-tabla_denuncias %>%
   clean_names()
 
-tabla_denuncias <- tabla_denuncias %>% 
-    group_by(provincia,canton) %>%
-    summarise(denuncias=n(),
+tabla_denuncias %>% 
+  group_by(canton) %>%
+  summarise(denuncias=n(),
             suma_vol_retenido = sum(volumen_retenido,na.rm = T))
-
-tabla_denuncias <-tabla_denuncias %>%
-  mutate(join_var_can = str_c(provincia,canton,sep = "-"))
-
-tabla_denuncias <-  stringdist_left_join(x=dpa,y=tabla_denuncias)
-
 
 ```
 
@@ -97,15 +98,22 @@ Base de datos de las unidades moviles de control para el 2022:
 read_excel('data/INSUMOS ESTADISTICOS/MAATE_BDD_unidades_moviles_2022.xlsx')
 ```
 
-Shape file:
-
-```{r}
-
-```
 
 Limpieza shape:
 
 ```{r}
+
+verificaciones <- tabla_puestos %>% 
+  group_by(pfcfvs) %>% 
+  summarise(frecuencia = n(),
+            cubicado = sum(cubicado_vtotal, na.rm = T),
+            retencion = sum(vol_ret,na.rm = T))
+
+verificaciones <- verificaciones %>% 
+  left_join(diccionario, by = c("pfcfvs" = "codigo"))
+
+# verificaciones_sf <- verificaciones %>% 
+#   st_as_sf(coords = c("x","y"))
 
 origen <- tabla_puestos %>% 
   group_by(origen, origen_provincia) %>% 
@@ -118,11 +126,25 @@ origen <- origen %>%
 
 origen <- stringdist_left_join(x = dpa,y = origen)
 
-
 ```
 
+
+### Graficos:
+
+Número de revisiones forestales por origen del recurso:
+
 ```{r}
-shape %>% 
+tabla_plot <- shape %>% 
+  left_join(origen, by = c("DPA_PARROQ" = "dpa_parroq")) %>% 
+  filter(DPA_DESPRO != "GALAPAGOS") 
+
+tabla_plot %>% 
   ggplot() +
-  geom_sf()
+  geom_sf(aes(fill = frecuencia)) +
+  geom_point(data = diccionario, 
+             aes(x = x,
+                 y = y)) +
+    labs(title = "Número de verificaciones por cantón",
+         subtitle = "Los puntos representan los puntos de control forestal",
+         caption = "Fuente: MAATE")
 ```
