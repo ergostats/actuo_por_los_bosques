@@ -18,6 +18,9 @@ library(fuzzyjoin)
 Lectura del shapefile:
 
 ```{r}
+
+shape <- read_sf("data/ORGANIZACION_TERRITORIAL_PARROQUIAL/ORGANIZACION_TERRITORIAL_PARROQUIAL.shp")
+
 dpa <- shape %>%
   as_tibble() %>% 
   select(matches("DPA"))
@@ -89,7 +92,7 @@ Shape file:
 
 
 ```{r}
-shape <- read_sf("data/ORGANIZACION_TERRITORIAL_PARROQUIAL/ORGANIZACION_TERRITORIAL_PARROQUIAL.shp")
+
 ```
 
 
