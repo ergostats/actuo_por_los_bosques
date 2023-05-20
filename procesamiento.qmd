@@ -192,7 +192,7 @@ tabla_plot_aprovechamiento %>%
     labs(title = "Areas del programa de aprovechamiento forestal por cantón",
          subtitle = "Los puntos representan las areas de aprovechamiento forestal por canton",
          caption = "Fuente: MAATE")
-=======
+
 Volúmen retenido y número de denuncias por provincia:
 
 ```{r}
