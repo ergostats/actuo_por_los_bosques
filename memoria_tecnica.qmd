@@ -4,6 +4,20 @@ format: html
 editor: visual
 ---
 
+## Antes
+
+Se empezó por descargar los datos brindados a traves del siguiente enlace: https://drive.google.com/drive/folders/1bz5JUa15XU3jQ6HVF7G4jgf5EOwPSjwW?usp=sharing . Posterior a esto se revisaron los mismos para entender qué contenía cada archivo. Se notó que teniamos archivos en formato .xlsx y .zip, para los segundos fue necesario descargarlos y descomprimirlos. Ya con esto hecho, teniamos nuestros datos listos.
+
+Para la selección de qué datos usar procedimos a tener una conversación en el grupo para ver qué variables eran de interés y cuáles podían servir para responder las preguntas sobre las estaciones en los distintos puntos del país. Debido a la gran cantidad de variables existentes se decidió tomar tres grupos:
+
+-   Datos sobre el aprovechamiento forestal
+
+-   Datos sobre la atención a denuncias
+
+-   Datos sobre el origen y destino de los recursos forestales
+
+Por último, se decidió usar el lenguaje de programación R para trabajar. Los scripts, datos y resultados se pueden observar en el siguiente repositorio de GitHub https://github.com/ergostats/actuo_por_los_bosques.git .
+
 ## Quarto
 
 Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
