@@ -25,15 +25,25 @@ tabla <- tabla %>%
   clean_names()
 
 tabla %>% 
-  group_by(......) %>% 
-  summarise(denuncia = n(),
-            suma = sum(...., na.rm = T))
+  group_by(provincia, canton, parroquia) %>% 
+  summarise(suma_area_predio = sum(area_del_predio_has, na.rm = T),
+            suma_area_programa = sum(area_del_programa_has, na.rm = T))
 ```
 
 Base de datos de la atencion a denuncia de talas del 2022:
 
 ```{r}
-read_excel('data/INSUMOS ESTADISTICOS/MAATE_BDD_atencion_denuncias_talas_2022.xlsx')
+tabla_denuncias<-read_excel('data/INSUMOS ESTADISTICOS/MAATE_BDD_atencion_denuncias_talas_2022.xlsx')
+
+
+tabla_denuncias<-tabla_denuncias %>%
+  clean_names()
+
+tabla_denuncias %>% 
+  group_by(canton) %>%
+  summarise(denuncias=n(),
+            suma_vol_retenido = sum(volumen_retenido,na.rm = T))
+
 ```
 
 Base de datos del destino final de los recursos para el 2022:
