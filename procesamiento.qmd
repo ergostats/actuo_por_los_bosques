@@ -1,0 +1,65 @@
+---
+title: "Descripcion de las matrices"
+format: html
+editor: visual
+---
+
+## Lectura de las bases
+
+```{r}
+library(readxl)
+library(tidyverse)
+library(sf)
+library(janitor)
+```
+
+Base de datos del aprovechamiento forestal del 2022:
+
+```{r}
+tabla <- read_excel('data/INSUMOS ESTADISTICOS/MAATE_BDD_aprovechamiento_forestal_2022.xlsx')
+
+
+tabla <- tabla %>% 
+  clean_names()
+
+tabla %>% 
+  group_by(......) %>% 
+  summarise(denuncia = n(),
+            suma = sum(...., na.rm = T))
+```
+
+Base de datos de la atencion a denuncia de talas del 2022:
+
+```{r}
+read_excel('data/INSUMOS ESTADISTICOS/MAATE_BDD_atencion_denuncias_talas_2022.xlsx')
+```
+
+Base de datos del destino final de los recursos para el 2022:
+
+```{r}
+read_excel('data/INSUMOS ESTADISTICOS/MAATE_BDD_destino_final_2022.xlsx')
+```
+
+Base de datos de los puestos fijos de control para el 2022:
+
+```{r}
+read_excel('data/INSUMOS ESTADISTICOS/MAATE_BDD_puestos_fijos_2022.xlsx')
+```
+
+Base de datos de las unidades moviles de control para el 2022:
+
+```{r}
+read_excel('data/INSUMOS ESTADISTICOS/MAATE_BDD_unidades_moviles_2022.xlsx')
+```
+
+Shape file:
+
+```{r}
+
+shape <- read_sf("data/ORGANIZACION_TERRITORIAL_PARROQUIAL/ORGANIZACION_TERRITORIAL_PARROQUIAL.shp")
+
+
+shape %>% 
+  ggplot() +
+  geom_sf()
+```
