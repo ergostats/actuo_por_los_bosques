@@ -28,7 +28,7 @@ tabla %>%
             suma_area_programa = sum(area_del_programa_has, na.rm = T))
 ```
 
-Base de datos de la atencion a denuncia de talas del 2022:
+Base de datos de la atencion a denuncias de talas del 2022:
 
 ```{r}
 tabla_denuncias<-read_excel('data/INSUMOS ESTADISTICOS/MAATE_BDD_atencion_denuncias_talas_2022.xlsx')
