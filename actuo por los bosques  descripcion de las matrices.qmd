@@ -16,6 +16,14 @@ Base de datos del aprovechamiento forestal del 2022:
 read_excel('data/MAATE_BDD_aprovechamiento_forestal_2022.xlsx')
 ```
 
+```{r}
+aprovechamiento_forestal <- read_excel('data/MAATE_BDD_aprovechamiento_forestal_2022.xlsx')
+
+resumen <- aprovechamiento_forestal %>% 
+  group_by()
+
+```
+
 Base de datos de la atencion a denuncia de talas del 2022:
 
 ```{r}
