@@ -186,7 +186,7 @@ tabla_plot_aprovechamiento <- shape %>%
 tabla_plot_aprovechamiento %>% 
   ggplot() +
   geom_sf(aes(fill = suma_area_programa)) +
-  geom_point(data = tabla_aprovechamiento, 
+  geom_point(data = diccionario, 
              aes(x = x,
                  y = y)) +
     labs(title = "Areas del programa de aprovechamiento forestal por cantón",
