@@ -13,6 +13,7 @@ library(sf)
 library(janitor)
 library(stringdist)
 library(fuzzyjoin)
+library(ggsn)
 ```
 
 Catalogo variables:
@@ -31,6 +32,9 @@ Lectura del shapefile:
 ```{r}
 
 shape <- read_sf("data/ORGANIZACION_TERRITORIAL_PARROQUIAL/ORGANIZACION_TERRITORIAL_PARROQUIAL.shp")
+
+aread_protegidas <- read_sf("data/hc000_bosque_vegetacion_protectora/hc000_bosque_vegetacion_protectora.shp")
+
 
 dpa <- shape %>%
   as_tibble() %>% 
@@ -111,7 +115,7 @@ read_excel('data/INSUMOS ESTADISTICOS/MAATE_BDD_unidades_moviles_2022.xlsx')
 ```
 
 
-Limpieza shape:
+Origenes y destinos:
 
 ```{r}
 
@@ -146,13 +150,22 @@ origen <- stringdist_left_join(x = dpa,y = origen)
 Número de revisiones forestales por origen del recurso:
 
 ```{r}
+
+aread_protegidas <- st_transform(aread_protegidas, "+proj=merc")
+
+shape <- st_transform(shape, "+proj=merc")
+
+# shape <- sf::st_simplify(shape)
+
 tabla_plot <- shape %>% 
-  left_join(origen, by = c("DPA_PARROQ" = "dpa_parroq")) %>% 
-  filter(DPA_DESPRO != "GALAPAGOS") 
+  left_join(origen, by = c("DPA_PARROQ" = "dpa_parroq"))
+# %>% 
+#   filter(DPA_DESPRO != "GALAPAGOS") 
 
 tabla_plot %>% 
   ggplot() +
   geom_sf(aes(fill = frecuencia)) +
+  # geom_sf(data = aread_protegidas) +
   geom_point(data = diccionario, 
              aes(x = x,
                  y = y)) +
