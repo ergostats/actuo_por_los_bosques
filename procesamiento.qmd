@@ -112,8 +112,12 @@ Base de datos de las unidades moviles de control para el 2022:
 read_excel('data/INSUMOS ESTADISTICOS/MAATE_BDD_unidades_moviles_2022.xlsx')
 ```
 
+<<<<<<< HEAD
+Limpieza shape:
+=======
 
 Origenes y destinos:
+>>>>>>> 0e57e3260c23b86cf71e0c9d974fab28b85008f7
 
 ```{r}
 
@@ -171,6 +175,24 @@ tabla_plot %>%
          caption = "Fuente: MAATE")
 ```
 
+<<<<<<< HEAD
+Grafico de Aprovechamiento Forestal:
+
+```{r}
+tabla_plot_aprovechamiento <- shape %>% 
+  left_join(tabla_aprovechamiento, by = c("DPA_PARROQ" = "dpa_parroq")) %>% 
+  filter(DPA_DESPRO != "GALAPAGOS") 
+
+tabla_plot_aprovechamiento %>% 
+  ggplot() +
+  geom_sf(aes(fill = suma_area_programa)) +
+  geom_point(data = diccionario, 
+             aes(x = x,
+                 y = y)) +
+    labs(title = "Areas del programa de aprovechamiento forestal por cantón",
+         subtitle = "Los puntos representan las areas de aprovechamiento forestal por canton",
+         caption = "Fuente: MAATE")
+
 Volúmen retenido y número de denuncias por provincia:
 
 ```{r}
@@ -203,4 +225,5 @@ tabla_plot_volumen %>%
   labs(title = "Volúmen retenido por cantón",
        subtitle = "Los puntos son el volúmen",
        caption = "Fuente: MAATE")
+>>>>>>> 0e57e3260c23b86cf71e0c9d974fab28b85008f7
 ```
