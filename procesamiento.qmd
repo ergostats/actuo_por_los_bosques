@@ -13,6 +13,7 @@ library(sf)
 library(janitor)
 library(stringdist)
 library(fuzzyjoin)
+library(ggsn)
 ```
 
 Catalogo variables:
@@ -30,6 +31,9 @@ Lectura del shapefile:
 ```{r}
 
 shape <- read_sf("data/ORGANIZACION_TERRITORIAL_PARROQUIAL/ORGANIZACION_TERRITORIAL_PARROQUIAL.shp")
+
+aread_protegidas <- read_sf("data/hc000_bosque_vegetacion_protectora/hc000_bosque_vegetacion_protectora.shp")
+
 
 dpa <- shape %>%
   as_tibble() %>% 
@@ -108,7 +112,12 @@ Base de datos de las unidades moviles de control para el 2022:
 read_excel('data/INSUMOS ESTADISTICOS/MAATE_BDD_unidades_moviles_2022.xlsx')
 ```
 
+<<<<<<< HEAD
 Limpieza shape:
+=======
+
+Origenes y destinos:
+>>>>>>> 0e57e3260c23b86cf71e0c9d974fab28b85008f7
 
 ```{r}
 
@@ -142,13 +151,22 @@ origen <- stringdist_left_join(x = dpa,y = origen)
 Número de revisiones forestales por origen del recurso:
 
 ```{r}
+
+aread_protegidas <- st_transform(aread_protegidas, "+proj=merc")
+
+shape <- st_transform(shape, "+proj=merc")
+
+# shape <- sf::st_simplify(shape)
+
 tabla_plot <- shape %>% 
-  left_join(origen, by = c("DPA_PARROQ" = "dpa_parroq")) %>% 
-  filter(DPA_DESPRO != "GALAPAGOS") 
+  left_join(origen, by = c("DPA_PARROQ" = "dpa_parroq"))
+# %>% 
+#   filter(DPA_DESPRO != "GALAPAGOS") 
 
 tabla_plot %>% 
   ggplot() +
   geom_sf(aes(fill = frecuencia)) +
+  # geom_sf(data = aread_protegidas) +
   geom_point(data = diccionario, 
              aes(x = x,
                  y = y)) +
@@ -157,6 +175,7 @@ tabla_plot %>%
          caption = "Fuente: MAATE")
 ```
 
+<<<<<<< HEAD
 Grafico de Aprovechamiento Forestal:
 
 ```{r}
@@ -173,4 +192,38 @@ tabla_plot_aprovechamiento %>%
     labs(title = "Areas del programa de aprovechamiento forestal por cantón",
          subtitle = "Los puntos representan las areas de aprovechamiento forestal por canton",
          caption = "Fuente: MAATE")
+=======
+Volúmen retenido y número de denuncias por provincia:
+
+```{r}
+tabla_plot_denuncias <- shape %>%
+  left_join(tabla_denuncias, by = c("DPA_CANTON" = "dpa_canton")) %>% 
+  filter(DPA_DESPRO != "GALAPAGOS")
+tabla_plot_denuncias %>%
+  ggplot()+
+  geom_sf(aes(fill =suma_vol_retenido )) + 
+  geom_point(data = diccionario,
+             aes(x = x,
+                 y = y)) +
+  labs(title = "Número de denuncias por cantón",
+       subtitle = "Los puntos son las denuncias realizadas",
+       caption = "Fuente: MAATE")
+
+```
+
+```{r}
+tabla_plot_volumen <- shape %>%
+  left_join(tabla_denuncias, by = c("DPA_CANTON" = "dpa_canton")) %>% 
+  filter(DPA_DESPRO != "GALAPAGOS")
+
+tabla_plot_volumen %>%
+  ggplot()+
+  geom_sf(aes(fill = denuncias)) + 
+  geom_point(data = diccionario,
+             aes(x = x,
+                 y = y)) +
+  labs(title = "Volúmen retenido por cantón",
+       subtitle = "Los puntos son el volúmen",
+       caption = "Fuente: MAATE")
+>>>>>>> 0e57e3260c23b86cf71e0c9d974fab28b85008f7
 ```
