@@ -34,7 +34,6 @@ dpa <- dpa %>%
 
 ```
 
-
 Base de datos del aprovechamiento forestal del 2022:
 
 ```{r}
@@ -59,10 +58,16 @@ tabla_denuncias<-read_excel('data/INSUMOS ESTADISTICOS/MAATE_BDD_atencion_denunc
 tabla_denuncias<-tabla_denuncias %>%
   clean_names()
 
-tabla_denuncias %>% 
-  group_by(canton) %>%
-  summarise(denuncias=n(),
+tabla_denuncias <- tabla_denuncias %>% 
+    group_by(provincia,canton) %>%
+    summarise(denuncias=n(),
             suma_vol_retenido = sum(volumen_retenido,na.rm = T))
+
+tabla_denuncias <-tabla_denuncias %>%
+  mutate(join_var_can = str_c(provincia,canton,sep = "-"))
+
+tabla_denuncias <-  stringdist_left_join(x=dpa,y=tabla_denuncias)
+
 
 ```
 
@@ -89,12 +94,9 @@ read_excel('data/INSUMOS ESTADISTICOS/MAATE_BDD_unidades_moviles_2022.xlsx')
 
 Shape file:
 
-
-
 ```{r}
 
 ```
-
 
 Limpieza shape:
 
@@ -113,10 +115,6 @@ origen <- stringdist_left_join(x = dpa,y = origen)
 
 
 ```
-
-
-
-
 
 ```{r}
 shape %>% 
