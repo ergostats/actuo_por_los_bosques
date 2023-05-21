@@ -1,5 +1,10 @@
 ---
-title: "Descripcion de las matrices"
+title: "Data Jam 2da Edución Evaluando a los puestos de control forestal en Ecuador"
+subtitle: "Equipo foRestEC"
+author: 
+  - Alex Bajaña
+  - Brad Puglla
+  - Luis Portilla
 format: 
   html: 
     code-fold: true
