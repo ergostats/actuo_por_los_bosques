@@ -1,10 +1,14 @@
 ---
 title: "Memoria técnica"
-format: html
+format: docx
 editor: visual
 ---
 
-## Antes
+## Punto 1:
+
+*Describe el proceso que seguiste para obtener tus resultados, cuéntanos qué hacer antes, durante y después de obtener el resultado. Coloca la información lo más detallada posible, sigue una estructura de pasos con la idea de que otras personas que los lean puedan replicar los resultados.*
+
+#### Antes
 
 El reto se ha realizado en la siguiente versión de R:
 
@@ -32,10 +36,10 @@ Para poder generar realizar el análisis se tomaron los siguientes pasos:
 
 -   Nuestro repositorio quedo de la siguiente manera:
 
-| Contenido del proyecto           | Carpeta `data/`                  |
-|----------------------------------|----------------------------------|
-| ![](images/image-1461251106.png) |                                  
-                                                                      
+| Contenido del proyecto           | Carpeta `data/` |
+|----------------------------------|-----------------|
+| ![](images/image-1461251106.png) |                 |
+
                                     ![](images/image-2032005557.png)  |
 
 Con estos pasos, procedimos a tener una conversación en el grupo para ver qué variables eran de interés y cuáles podían servir para responder las preguntas sobre las estaciones en los distintos puntos del país. Debido a la gran cantidad de información decidimos abarcar la pertinencia de los puestos forestales de control desde tres aristas:
@@ -46,7 +50,7 @@ Con estos pasos, procedimos a tener una conversación en el grupo para ver qué 
 
 -   Datos los controles realizados en los puntos de control de acuerdo al origen y destino del recurso forestal.
 
-## Durante
+#### Durante
 
 En la etapa previa, se utilizó los recursos de datos en cuanto a la información geográfica para examinar diversos aspectos relacionados con los recursos forestales: puestos de control de recursos madereros y no madereros, las denuncias atendidas en cuanto al volumen de retención y los controles realizados al recurso forestal de acuerdo al origen y al destino de estos recursos.
 
@@ -72,4 +76,58 @@ Este proceso de los recursos permitió obtener una visión más completa de la s
 
 Nuestro objetivo es aportar a la representación gráfica de la pertinencia de los puntos de control forestal así como ayudar a la comprensión de la distribución espacial de los recursos, identificar áreas críticas o en riesgo, optimizar la ubicación de los puestos de control y mejorar la gestión y protección de los bosques.
 
-## 
+#### Después
+
+Empezamos con la creación de una historia. En nuestro caso los personajes de nuestra historia serán los puestos de control fijo. Decidimos generar 6 gráficos: Distribución geográfica de puestos fijos y áreas vulnerables, aprevechamiento del recurso forestal aprobado y efectivo, volumen verificado y retenido en los puestos fijos de control, controles y denuncias realizadas en los cantones y puestos fijos. En todos los casos replicamos la misma estructura de código y comentarios detallada a contnuación:
+
+-   Integración de la tabla de indicadores a la capa geográfica manteniendo el formato `sf`
+
+-   Creación de capas con `ggplot()`
+
+-   Visualización del coroplético
+
+-   Visualización de areas vulnerables
+
+-   Visualización de puestos de control
+
+-   Ajuste de parametros en cada capa
+
+-   Definición del formato de salida
+
+-   Inclusión de leyendas
+
+Con esto concluimos el procesamiento realizado para nuestro análisis, el resultado lo pueden observar en el siguiente enlace:
+
+\-\-\-\-\--
+
+## Punto 2
+
+*Crea un mapa que evalúe la locación de los puntos de control forestal. En el mapa incluye las capas que creas importantes para comprender la pertinencia de los puntos de control.*
+
+De los mapas realizados consideramos aquel que representa la pertinencia de los puestos de control fijo es el siguiente:
+
+```{r}
+knitr::include_graphics("procesamiento_files/figure-html/unnamed-chunk-21-1.png")
+```
+
+## Punto 3
+
+*Cuéntanos, ¿crees que la información proporcionada fue suficiente para alcanzar el objetivo? Qué información adicional crees que se necesita para mejorar el proceso y obtener mejores resultados.*
+
+Consideramos que la información fue realmente completa, en el sentido que abarcaba muchas perspectivas para entender las dinámicas de transporte del recurso forestal. Una oportunidad de mejora se encuentra en la construcción de un catalogo de recursos disponibles. Dejamos un ejemplo para ilustración a partir de una dificultad que encontramos. El archivo de áreas en conservación contiene los polígonos de áreas tales como manglares y territorios de comunidades, sin embargo tuvimos que deducir del nombre del archivo el contenido del mismo. Entonces nuestra sugerencia es la siguiente:
+
+| Archivo                                 | Descripción general                  | Fuente                                  |
+|-----------------------------------------|--------------------------------------|-----------------------------------------|
+| v_hc005_area_bajo_conservacion_aPolygon | Poligonos de areas bajo conservación | Acuerdo-Ministerial-Nro.-MAATE-2022-066 |
+|                                         |                                      |                                         |
+|                                         |                                      |                                         |
+
+## Punto 4
+
+*Ahora que ya finalizaste la guía y conoces cómo lograr los resultados, qué recomendaciones darías a un técnico que planea replicar tu proceso.*
+
+Como fans de R sugerimos usar R. Como podrás observar en nuestro documento de análisis (\-\-\-\--), la conjunción de R y documentos Quarto nos permiten redactar documentos de reporte donde podemos conjugar la narrativa y el código de R. Para cada mapa, y para cada tabla, empleamos la misma lógica de limpieza y visualización, haciendo que la reproducción de nuestro reporte requiera un menor esfuerzo.
+
+Otro punto a favor de usar R es la puesta en escena, nuestro reporte es un archivo HTML alojado en GitHub para presentarse como una página web. Esta alternativa puede reducir tiempos de procesamiento y presentación.
+
+Otra recomendación que damos como equipo es la constante retroalimentación con compañeros que tengan distintas perspectivas acerca de un mismo fenómeno. Pensemos que el objetivo de este taller buscaba ello justamente, aportar con distintas visiones a la comprensión del control forestal.
