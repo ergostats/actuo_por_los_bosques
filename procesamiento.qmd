@@ -7,7 +7,7 @@ author:
   - Luis Portilla
 format: 
   html: 
-    code-fold: true
+    code-fold: false
     code-summary: "Mostrar el código"
 editor: visual
 params: 
@@ -583,9 +583,9 @@ En contraste el puesto de control San Jerónimo, tiene poco aprovechamiento fore
 
 Por la baja aprobación de volumen explotable y la cercanía que existe entre los puestos de control de Jumbitono y Bella Unión, se podría optar por reubir ambos puestos a una ubicación que abarque las rutas de salida en comun. De está manera los recursos se podrían atender a los territorios de la costa central y del sur occidente del Ecuador. Un escenario similar sucede entre los puestos de control de Mera y Jumbitono. 
 
-En este análisis hemos realizado un recorrido meramente descriptivo para entender a través de las frecuencias de los controles y denuncias como se comporta el transporte de recuros forestales. Nuestro objetivo final es aportar a los esfuerzos de convservación ambiental realizados por el MAATE. Dichos esfuerzos toman en cuenta métodos de análisis multicriterio que pueden nutrirse de los hallazgos señalados. 
+En este análisis hemos realizado un recorrido meramente descriptivo para entender a través de las frecuencias de los controles y denuncias como se comporta el transporte de recursos forestales. Nuestro objetivo final es aportar a los esfuerzos de conservación ambiental realizados por el MAATE. Dichos esfuerzos toman en cuenta métodos de análisis multicriterio que pueden nutrirse de los hallazgos señalados. 
 
-Para poder complementar este análisis sugerimos la identificación de rutas de transporte frecuentes de tal manera que se puedan entender las dinamicas de transporte del recurso forestal de suerte que la ubicación de los puestos de control fijos sean optimas. Sin embargo estrategias de este tipo escapan del alcance de documentos como el que presentamos aquí. 
+Para poder complementar este análisis sugerimos la identificación de rutas de transporte frecuentes de tal manera que se puedan entender las dinámicas de transporte del recurso forestal de suerte que la ubicación de los puestos de control fijos sean optimas. Sin embargo estrategias de este tipo escapan del alcance de documentos como el que presentamos aquí. 
 
 Al final hemos optado por presentar una serie de imagenes que nos ayudan a entender la pertinencia de los puestos de control fijos. Consideramos que manteniendo buenas prácticas en la elaboración de un reporte podemos dejar un instrumento que pueda trascender los limites de esta competencia. Este documento fue realizado en un archivo Quarto, el cual por motivos de tiempo no hemos podido parametrizar, de forma que podamos hacer un análisis enfocado en una especie de flora especifica, un territorio, u otra desagregación de interés. Sin embargo esperamos que haya sido una lectura agradable para tu amigo lector. 
 

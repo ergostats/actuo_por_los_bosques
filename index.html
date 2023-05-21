@@ -138,8 +138,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="software-y-librerias" class="level1">
 <h1>Software y librerias</h1>
 <div class="cell">
-<details>
-<summary>Mostrar el código</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Lectura de excel:</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -169,14 +167,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Tablas</span></span>
 <span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 </div>
 <p>El reto se realizo con R:</p>
 <div class="cell">
-<details>
-<summary>Mostrar el código</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>R.version</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>               _                                
 platform       x86_64-w64-mingw32               
@@ -202,14 +196,11 @@ nickname       Shortstop Beagle                 </code></pre>
 <section id="catalogo-variables" class="level4">
 <h4 class="anchored" data-anchor-id="catalogo-variables">Catalogo variables:</h4>
 <div class="cell">
-<details>
-<summary>Mostrar el código</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>diccionario <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"data/INSUMOS ESTADISTICOS/CATALOGO_CONTROL_FORESTAL.xlsx"</span>,</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>                          <span class="at">sheet =</span> <span class="st">"PFCFVS"</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>diccionario <span class="ot">&lt;-</span> diccionario <span class="sc">%&gt;%</span> </span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">clean_names</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 </div>
 </section>
 <section id="lectura-de-los-shapefile" class="level4">
@@ -217,22 +208,16 @@ nickname       Shortstop Beagle                 </code></pre>
 <section id="cantones" class="level5">
 <h5 class="anchored" data-anchor-id="cantones">Cantones</h5>
 <div class="cell">
-<details>
-<summary>Mostrar el código</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>shape_can <span class="ot">&lt;-</span> <span class="fu">read_sf</span>(<span class="st">"data/ORGANIZACIÓN TERRITORIAL CANTONAL/ORGANIZACIaN TERRITORIAL CANTONAL.shp"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 </div>
 </section>
 <section id="bosques-protectores-y-areas-conservadas" class="level5">
 <h5 class="anchored" data-anchor-id="bosques-protectores-y-areas-conservadas">Bosques protectores y areas conservadas</h5>
 <div class="cell">
-<details>
-<summary>Mostrar el código</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>bosques_protectores <span class="ot">&lt;-</span> <span class="fu">read_sf</span>(<span class="st">"data/hc000_bosque_vegetacion_protectora/hc000_bosque_vegetacion_protectora.shp"</span>)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>areas_conservacion <span class="ot">&lt;-</span> <span class="fu">read_sf</span>(<span class="st">"data/v_hc005_area_bajo_conservacion_aPolygon/"</span>,</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>                              <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 </div>
 </section>
 </section>
@@ -241,28 +226,19 @@ nickname       Shortstop Beagle                 </code></pre>
 <section id="aprovechamiento-forestal" class="level5">
 <h5 class="anchored" data-anchor-id="aprovechamiento-forestal">Aprovechamiento forestal</h5>
 <div class="cell">
-<details>
-<summary>Mostrar el código</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>tabla_aprovechamiento <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">'data/INSUMOS ESTADISTICOS/MAATE_BDD_aprovechamiento_forestal_2022.xlsx'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 </div>
 </section>
 <section id="denuncias" class="level5">
 <h5 class="anchored" data-anchor-id="denuncias">Denuncias:</h5>
 <div class="cell">
-<details>
-<summary>Mostrar el código</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>tabla_denuncias<span class="ot">&lt;-</span><span class="fu">read_excel</span>(<span class="st">'data/INSUMOS ESTADISTICOS/MAATE_BDD_atencion_denuncias_talas_2022.xlsx'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 </div>
 </section>
 <section id="puestos-fijos" class="level5">
 <h5 class="anchored" data-anchor-id="puestos-fijos">Puestos fijos:</h5>
 <div class="cell">
-<details>
-<summary>Mostrar el código</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>tabla_puestos <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">'data/INSUMOS ESTADISTICOS/MAATE_BDD_puestos_fijos_2022.xlsx'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 </div>
 </section>
 </section>
@@ -271,23 +247,15 @@ nickname       Shortstop Beagle                 </code></pre>
 <h1>Limpieza de los archivos:</h1>
 <p>Remover Galápagos de los shapefiles:</p>
 <div class="cell">
-<details>
-<summary>Mostrar el código</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>shape_can <span class="ot">&lt;-</span> shape_can <span class="sc">%&gt;%</span> </span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(DPA_DESPRO <span class="sc">!=</span> <span class="st">"GALÁPAGOS"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 </div>
 <p>Proyectar las areas de conversación al plano XY:</p>
 <div class="cell">
-<details>
-<summary>Mostrar el código</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>areas_conservacion <span class="ot">&lt;-</span> <span class="fu">st_zm</span>(areas_conservacion, <span class="at">drop =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 </div>
 <p>Creamos diccionarios de parroquias y cantones, para poder realizar la unión de las tablas temáticas y la información de las capas geográficas.</p>
 <div class="cell">
-<details>
-<summary>Mostrar el código</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Diccionario cantones:</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>dpa_can <span class="ot">&lt;-</span> shape_can <span class="sc">%&gt;%</span></span>
@@ -297,13 +265,10 @@ nickname       Shortstop Beagle                 </code></pre>
 <span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>dpa_can <span class="ot">&lt;-</span> dpa_can <span class="sc">%&gt;%</span></span>
 <span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">clean_names</span>() <span class="sc">%&gt;%</span></span>
 <span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">join_var_can =</span> <span class="fu">str_c</span>(dpa_despro, dpa_descan, <span class="at">sep =</span> <span class="st">"-"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 </div>
 <p>En los casos en que la des agregación sea a nivel de cantón empleamos <code>join_var_can</code> para unir la información de cada cantón. En el caso de parroquias empleamos <code>join_var_par</code>.</p>
 <p>Base de datos del aprovechamiento forestal del 2022:</p>
 <div class="cell">
-<details>
-<summary>Mostrar el código</summary>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Limpieza de nombres:</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>tabla_aprovechamiento <span class="ot">&lt;-</span> tabla_aprovechamiento <span class="sc">%&gt;%</span> </span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">clean_names</span>()</span>
@@ -323,12 +288,9 @@ nickname       Shortstop Beagle                 </code></pre>
 <span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Unión con el diccionario:</span></span>
 <span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>tabla_aprovechamiento <span class="ot">&lt;-</span> <span class="fu">stringdist_left_join</span>(<span class="at">x =</span> dpa_can,</span>
 <span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>                                              <span class="at">y =</span> tabla_aprovechamiento)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 </div>
 <p>Base de datos de la atencion a denuncia de talas del 2022:</p>
 <div class="cell">
-<details>
-<summary>Mostrar el código</summary>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Limpieza de nombres:</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>tabla_denuncias <span class="ot">&lt;-</span> tabla_denuncias <span class="sc">%&gt;%</span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">clean_names</span>()</span>
@@ -346,12 +308,9 @@ nickname       Shortstop Beagle                 </code></pre>
 <span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Unión con el diccionario: </span></span>
 <span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>tabla_denuncias <span class="ot">&lt;-</span>  <span class="fu">stringdist_left_join</span>(<span class="at">x =</span> dpa_can,</span>
 <span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">y =</span> tabla_denuncias)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 </div>
 <p>Base de datos de los puestos fijos de control para el 2022:</p>
 <div class="cell">
-<details>
-<summary>Mostrar el código</summary>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Limpieza de nombres:</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>tabla_puestos <span class="ot">&lt;-</span> tabla_puestos <span class="sc">%&gt;%</span> </span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">clean_names</span>() </span>
@@ -380,7 +339,6 @@ nickname       Shortstop Beagle                 </code></pre>
 <span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Unión con el diccionario: </span></span>
 <span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a>origen <span class="ot">&lt;-</span> <span class="fu">stringdist_left_join</span>(<span class="at">x =</span> dpa_can,<span class="at">y =</span> origen)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 </div>
 </section>
 <section id="que-tan-efectivo-es-el-control-forestal-en-el-ecuador-vamos-a-averiguarlo-con-las-librerías-ggplot2-y-sf-de-r" class="level1">
@@ -391,8 +349,6 @@ nickname       Shortstop Beagle                 </code></pre>
 <p>Da click en <code>Code</code> para seguir el paso a paso.</p>
 </blockquote>
 <div class="cell">
-<details>
-<summary>Mostrar el código</summary>
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Empezamos con un ggplot() que va a tener datos independientes en cada capa:</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>plot_nacional <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
@@ -442,15 +398,12 @@ nickname       Shortstop Beagle                 </code></pre>
 <span id="cb16-47"><a href="#cb16-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="dv">0</span>))</span>
 <span id="cb16-48"><a href="#cb16-48" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-49"><a href="#cb16-49" aria-hidden="true" tabindex="-1"></a>plot_nacional</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output-display">
 <p><img src="procesamiento_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Vemos que los puestos de control se concentra en el norte y oriente del Ecuador, donde hay una especial concentración de áreas bajo conservación. Añadamos a nuestro mapa el aprovechamiento de producto forestal. Para ello vamos a traficar el volumen aprobado para aprovechamiento total por parroquia.</p>
 <div class="cell">
-<details>
-<summary>Mostrar el código</summary>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Unión de la tabla de resumen con el shapefile:</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>tabla_plot_aprovechamiento <span class="ot">&lt;-</span> shape_can <span class="sc">%&gt;%</span> </span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(tabla_aprovechamiento, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"DPA_CANTON"</span> <span class="ot">=</span> <span class="st">"dpa_canton"</span>))</span>
@@ -511,15 +464,12 @@ nickname       Shortstop Beagle                 </code></pre>
 <span id="cb17-58"><a href="#cb17-58" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"Fuente: MAATE</span><span class="sc">\n</span><span class="st">Elaboración: Equipo foRestEC"</span>,</span>
 <span id="cb17-59"><a href="#cb17-59" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">"Volumen métrico (m3)"</span>,</span>
 <span id="cb17-60"><a href="#cb17-60" aria-hidden="true" tabindex="-1"></a>       <span class="at">colour =</span> <span class="st">"Tipo de área"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output-display">
 <p><img src="procesamiento_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Las áreas de mayor aprovechamiento del recurso forestal están presente se concentran en la costa centro y norte, y a lo largo de la región amazónica muy cerca de áreas bajo conservación y bosques protectores, es por ello que ¡el control forestal es tán importante!. Para mejorar la representación en los colores hemos aplicado logaritmos a los valores presentados en el mapa. Ahora veamos que pasa con el volumen aprovechado.</p>
 <div class="cell">
-<details>
-<summary>Mostrar el código</summary>
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>mediana_aprovechamiento <span class="ot">&lt;-</span> tabla_aprovechamiento <span class="sc">%&gt;%</span> </span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(volumen_aprovechado) <span class="sc">%&gt;%</span> </span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">log</span>(.) <span class="sc">%&gt;%</span> </span>
@@ -576,7 +526,6 @@ nickname       Shortstop Beagle                 </code></pre>
 <span id="cb18-54"><a href="#cb18-54" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"Fuente: MAATE</span><span class="sc">\n</span><span class="st">Elaboración: Equipo foRestEC"</span>,</span>
 <span id="cb18-55"><a href="#cb18-55" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">"Volumen métrico (m3)"</span>,</span>
 <span id="cb18-56"><a href="#cb18-56" aria-hidden="true" tabindex="-1"></a>       <span class="at">colour =</span> <span class="st">"Tipo de área"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output-display">
 <p><img src="procesamiento_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -584,8 +533,6 @@ nickname       Shortstop Beagle                 </code></pre>
 <p>Es chevere ver que la sintaxis que hemos empleado tiene la misma estructura, lo que permite reproducir el código con facilidad. Con está distribución del aprovechamiento del recurso forestal la pregunta que nos nace es: En que lugares existe una diferencia considerable entre el volumen aprobado para ser aprovechado y el volumen efectivamente aprovechado. Aquí vamos a hacer un cambio sutil en la presentación del gráfico.</p>
 <p>Los cantones, donde la diferencia entre aprovechamiento y el volumen aprobado es consirable son:</p>
 <div class="cell">
-<details>
-<summary>Mostrar el código</summary>
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>tabla_aprovechamiento <span class="sc">%&gt;%</span> </span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span> </span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(dpa_descan,dpa_despro,volumen_aprobado,volumen_aprovechado,exceso) <span class="sc">%&gt;%</span> </span>
@@ -596,15 +543,14 @@ nickname       Shortstop Beagle                 </code></pre>
 <span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>             <span class="at">volumen_aprobado =</span> <span class="fu">md</span>(<span class="st">"**Volumen aprobado**"</span>),</span>
 <span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>             <span class="at">volumen_aprovechado =</span> <span class="fu">md</span>(<span class="st">"**Volumen aprovechado**"</span>),</span>
 <span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>             <span class="at">exceso =</span> <span class="fu">md</span>(<span class="st">"**Diferencia**"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output-display">
 
-<div id="opyolqsgkl" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="csziyknlmg" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-:where(#opyolqsgkl) .gt_table {
+:where(#csziyknlmg) .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -629,7 +575,7 @@ nickname       Shortstop Beagle                 </code></pre>
   border-left-color: #D3D3D3;
 }
 
-:where(#opyolqsgkl) .gt_heading {
+:where(#csziyknlmg) .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -641,12 +587,12 @@ nickname       Shortstop Beagle                 </code></pre>
   border-right-color: #D3D3D3;
 }
 
-:where(#opyolqsgkl) .gt_caption {
+:where(#csziyknlmg) .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-:where(#opyolqsgkl) .gt_title {
+:where(#csziyknlmg) .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -658,7 +604,7 @@ nickname       Shortstop Beagle                 </code></pre>
   border-bottom-width: 0;
 }
 
-:where(#opyolqsgkl) .gt_subtitle {
+:where(#csziyknlmg) .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -670,13 +616,13 @@ nickname       Shortstop Beagle                 </code></pre>
   border-top-width: 0;
 }
 
-:where(#opyolqsgkl) .gt_bottom_border {
+:where(#csziyknlmg) .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-:where(#opyolqsgkl) .gt_col_headings {
+:where(#csziyknlmg) .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -691,7 +637,7 @@ nickname       Shortstop Beagle                 </code></pre>
   border-right-color: #D3D3D3;
 }
 
-:where(#opyolqsgkl) .gt_col_heading {
+:where(#csziyknlmg) .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -711,7 +657,7 @@ nickname       Shortstop Beagle                 </code></pre>
   overflow-x: hidden;
 }
 
-:where(#opyolqsgkl) .gt_column_spanner_outer {
+:where(#csziyknlmg) .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -723,15 +669,15 @@ nickname       Shortstop Beagle                 </code></pre>
   padding-right: 4px;
 }
 
-:where(#opyolqsgkl) .gt_column_spanner_outer:first-child {
+:where(#csziyknlmg) .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-:where(#opyolqsgkl) .gt_column_spanner_outer:last-child {
+:where(#csziyknlmg) .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-:where(#opyolqsgkl) .gt_column_spanner {
+:where(#csziyknlmg) .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -743,7 +689,7 @@ nickname       Shortstop Beagle                 </code></pre>
   width: 100%;
 }
 
-:where(#opyolqsgkl) .gt_group_heading {
+:where(#csziyknlmg) .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -769,7 +715,7 @@ nickname       Shortstop Beagle                 </code></pre>
   text-align: left;
 }
 
-:where(#opyolqsgkl) .gt_empty_group_heading {
+:where(#csziyknlmg) .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -784,15 +730,15 @@ nickname       Shortstop Beagle                 </code></pre>
   vertical-align: middle;
 }
 
-:where(#opyolqsgkl) .gt_from_md > :first-child {
+:where(#csziyknlmg) .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-:where(#opyolqsgkl) .gt_from_md > :last-child {
+:where(#csziyknlmg) .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-:where(#opyolqsgkl) .gt_row {
+:where(#csziyknlmg) .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -811,7 +757,7 @@ nickname       Shortstop Beagle                 </code></pre>
   overflow-x: hidden;
 }
 
-:where(#opyolqsgkl) .gt_stub {
+:where(#csziyknlmg) .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -824,7 +770,7 @@ nickname       Shortstop Beagle                 </code></pre>
   padding-right: 5px;
 }
 
-:where(#opyolqsgkl) .gt_stub_row_group {
+:where(#csziyknlmg) .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -838,11 +784,11 @@ nickname       Shortstop Beagle                 </code></pre>
   vertical-align: top;
 }
 
-:where(#opyolqsgkl) .gt_row_group_first td {
+:where(#csziyknlmg) .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-:where(#opyolqsgkl) .gt_summary_row {
+:where(#csziyknlmg) .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -852,16 +798,16 @@ nickname       Shortstop Beagle                 </code></pre>
   padding-right: 5px;
 }
 
-:where(#opyolqsgkl) .gt_first_summary_row {
+:where(#csziyknlmg) .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-:where(#opyolqsgkl) .gt_first_summary_row.thick {
+:where(#csziyknlmg) .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-:where(#opyolqsgkl) .gt_last_summary_row {
+:where(#csziyknlmg) .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -871,7 +817,7 @@ nickname       Shortstop Beagle                 </code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-:where(#opyolqsgkl) .gt_grand_summary_row {
+:where(#csziyknlmg) .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -881,7 +827,7 @@ nickname       Shortstop Beagle                 </code></pre>
   padding-right: 5px;
 }
 
-:where(#opyolqsgkl) .gt_first_grand_summary_row {
+:where(#csziyknlmg) .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -891,11 +837,11 @@ nickname       Shortstop Beagle                 </code></pre>
   border-top-color: #D3D3D3;
 }
 
-:where(#opyolqsgkl) .gt_striped {
+:where(#csziyknlmg) .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-:where(#opyolqsgkl) .gt_table_body {
+:where(#csziyknlmg) .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -904,7 +850,7 @@ nickname       Shortstop Beagle                 </code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-:where(#opyolqsgkl) .gt_footnotes {
+:where(#csziyknlmg) .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -918,7 +864,7 @@ nickname       Shortstop Beagle                 </code></pre>
   border-right-color: #D3D3D3;
 }
 
-:where(#opyolqsgkl) .gt_footnote {
+:where(#csziyknlmg) .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-left: 4px;
@@ -927,7 +873,7 @@ nickname       Shortstop Beagle                 </code></pre>
   padding-right: 5px;
 }
 
-:where(#opyolqsgkl) .gt_sourcenotes {
+:where(#csziyknlmg) .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -941,7 +887,7 @@ nickname       Shortstop Beagle                 </code></pre>
   border-right-color: #D3D3D3;
 }
 
-:where(#opyolqsgkl) .gt_sourcenote {
+:where(#csziyknlmg) .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -949,64 +895,64 @@ nickname       Shortstop Beagle                 </code></pre>
   padding-right: 5px;
 }
 
-:where(#opyolqsgkl) .gt_left {
+:where(#csziyknlmg) .gt_left {
   text-align: left;
 }
 
-:where(#opyolqsgkl) .gt_center {
+:where(#csziyknlmg) .gt_center {
   text-align: center;
 }
 
-:where(#opyolqsgkl) .gt_right {
+:where(#csziyknlmg) .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-:where(#opyolqsgkl) .gt_font_normal {
+:where(#csziyknlmg) .gt_font_normal {
   font-weight: normal;
 }
 
-:where(#opyolqsgkl) .gt_font_bold {
+:where(#csziyknlmg) .gt_font_bold {
   font-weight: bold;
 }
 
-:where(#opyolqsgkl) .gt_font_italic {
+:where(#csziyknlmg) .gt_font_italic {
   font-style: italic;
 }
 
-:where(#opyolqsgkl) .gt_super {
+:where(#csziyknlmg) .gt_super {
   font-size: 65%;
 }
 
-:where(#opyolqsgkl) .gt_footnote_marks {
+:where(#csziyknlmg) .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
 }
 
-:where(#opyolqsgkl) .gt_asterisk {
+:where(#csziyknlmg) .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-:where(#opyolqsgkl) .gt_indent_1 {
+:where(#csziyknlmg) .gt_indent_1 {
   text-indent: 5px;
 }
 
-:where(#opyolqsgkl) .gt_indent_2 {
+:where(#csziyknlmg) .gt_indent_2 {
   text-indent: 10px;
 }
 
-:where(#opyolqsgkl) .gt_indent_3 {
+:where(#csziyknlmg) .gt_indent_3 {
   text-indent: 15px;
 }
 
-:where(#opyolqsgkl) .gt_indent_4 {
+:where(#csziyknlmg) .gt_indent_4 {
   text-indent: 20px;
 }
 
-:where(#opyolqsgkl) .gt_indent_5 {
+:where(#csziyknlmg) .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -1057,8 +1003,6 @@ nickname       Shortstop Beagle                 </code></pre>
 <p>Dos gráficos más nos darán una idea de la pertinencia de la ubicación de los puestos de control. Sin embargo, por el momento podemos concluir que la distribución actual de estos puestos de control que ha empleado el MAATE se corresponde con el volumen de aprovechamiento.</p>
 <p>En esta ocasión vamos a añadir el atributo de tamaño al punto del puesto de control, el cual tomará valores de acuerdo al número de controles realizados para verificar el volumen de producto forestal y el tráfico de fauna silvestre, revisión que se realiza a los distintos medios de transporte. Fijate como en la capa de la tabla temática agregamos el argumento <code>size = frecuencia</code>.</p>
 <div class="cell">
-<details>
-<summary>Mostrar el código</summary>
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>tabla_plot_origen <span class="ot">&lt;-</span> shape_can <span class="sc">%&gt;%</span> </span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(origen, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"DPA_CANTON"</span> <span class="ot">=</span> <span class="st">"dpa_canton"</span>))</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1118,15 +1062,12 @@ nickname       Shortstop Beagle                 </code></pre>
 <span id="cb20-57"><a href="#cb20-57" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">"Volumen métrico (m3)"</span>,</span>
 <span id="cb20-58"><a href="#cb20-58" aria-hidden="true" tabindex="-1"></a>       <span class="at">colour =</span> <span class="st">"Tipo de área"</span>,</span>
 <span id="cb20-59"><a href="#cb20-59" aria-hidden="true" tabindex="-1"></a>       <span class="at">size =</span> <span class="st">"Controles"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output-display">
 <p><img src="procesamiento_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>El control forestal es una responsabilidad de multiples actores. A su vez, que los beneficiarios en distintos niveles, juegan un papel importante, en la reducción del aprovechamiento ilegal del recurso forestal y la mitigación del tráfico de flora y fauna silvestre. Vamos a revisar el volumen métrico retenido en cada uno de los puestos fijos de control, lo cual le dará tamaño al punto, mientras que en el mapa vamos a representar el número de denuncias realizadas en cada cantón.</p>
 <div class="cell">
-<details>
-<summary>Mostrar el código</summary>
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>tabla_plot_denuncias <span class="ot">&lt;-</span> shape_can <span class="sc">%&gt;%</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(tabla_denuncias, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"DPA_CANTON"</span> <span class="ot">=</span> <span class="st">"dpa_canton"</span>)) </span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1185,7 +1126,6 @@ nickname       Shortstop Beagle                 </code></pre>
 <span id="cb21-56"><a href="#cb21-56" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">"Denuncias"</span>,</span>
 <span id="cb21-57"><a href="#cb21-57" aria-hidden="true" tabindex="-1"></a>       <span class="at">colour =</span> <span class="st">"Tipo de área"</span>,</span>
 <span id="cb21-58"><a href="#cb21-58" aria-hidden="true" tabindex="-1"></a>       <span class="at">size =</span> <span class="st">"Volumen retenido (m3)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output-display">
 <p><img src="procesamiento_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -1198,8 +1138,8 @@ nickname       Shortstop Beagle                 </code></pre>
 <p>Salta a la vista la importancia que tiene el puesto de control del Coca, a pesar de estar en el cantón de mayor número de denuncias es de los puntos que menor retención de volumen realiza. Con la evidencia aquí arrojada podemos decir que este es un ejemplo de puesto efectivo.</p>
 <p>En contraste el puesto de control San Jerónimo, tiene poco aprovechamiento forestal, bajo número de controles realizados y no existen casos de denuncias cercanas. Si bien es cierto, que un factor de importancia es la cercacía a la frontera, podríamos considerar otro mecanismo de acción y re ubicar este puesto de control.</p>
 <p>Por la baja aprobación de volumen explotable y la cercanía que existe entre los puestos de control de Jumbitono y Bella Unión, se podría optar por reubir ambos puestos a una ubicación que abarque las rutas de salida en comun. De está manera los recursos se podrían atender a los territorios de la costa central y del sur occidente del Ecuador. Un escenario similar sucede entre los puestos de control de Mera y Jumbitono.</p>
-<p>En este análisis hemos realizado un recorrido meramente descriptivo para entender a través de las frecuencias de los controles y denuncias como se comporta el transporte de recuros forestales. Nuestro objetivo final es aportar a los esfuerzos de convservación ambiental realizados por el MAATE. Dichos esfuerzos toman en cuenta métodos de análisis multicriterio que pueden nutrirse de los hallazgos señalados.</p>
-<p>Para poder complementar este análisis sugerimos la identificación de rutas de transporte frecuentes de tal manera que se puedan entender las dinamicas de transporte del recurso forestal de suerte que la ubicación de los puestos de control fijos sean optimas. Sin embargo estrategias de este tipo escapan del alcance de documentos como el que presentamos aquí.</p>
+<p>En este análisis hemos realizado un recorrido meramente descriptivo para entender a través de las frecuencias de los controles y denuncias como se comporta el transporte de recursos forestales. Nuestro objetivo final es aportar a los esfuerzos de conservación ambiental realizados por el MAATE. Dichos esfuerzos toman en cuenta métodos de análisis multicriterio que pueden nutrirse de los hallazgos señalados.</p>
+<p>Para poder complementar este análisis sugerimos la identificación de rutas de transporte frecuentes de tal manera que se puedan entender las dinámicas de transporte del recurso forestal de suerte que la ubicación de los puestos de control fijos sean optimas. Sin embargo estrategias de este tipo escapan del alcance de documentos como el que presentamos aquí.</p>
 <p>Al final hemos optado por presentar una serie de imagenes que nos ayudan a entender la pertinencia de los puestos de control fijos. Consideramos que manteniendo buenas prácticas en la elaboración de un reporte podemos dejar un instrumento que pueda trascender los limites de esta competencia. Este documento fue realizado en un archivo Quarto, el cual por motivos de tiempo no hemos podido parametrizar, de forma que podamos hacer un análisis enfocado en una especie de flora especifica, un territorio, u otra desagregación de interés. Sin embargo esperamos que haya sido una lectura agradable para tu amigo lector.</p>
 </section>
 
